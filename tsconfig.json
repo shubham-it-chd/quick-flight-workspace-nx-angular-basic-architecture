@@ -1,0 +1,54 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@env/*": [
+        "apps/client/src/environments/*"
+      ],
+      "@quick-flight-workspace/dal": [
+        "libs/dal/src/index.ts"
+      ],
+      "@dal/services": [
+        "libs/shared/src/lib/services"
+      ],
+      "@quick-flight-workspace/common-ui": [
+        "libs/common-ui/src/index.ts"
+      ],
+      "@quick-flight-workspace/shared": [
+        "libs/shared/src/index.ts"
+      ],
+      "@dal/services/*": [
+        "libs/shared/src/lib/services/*"
+      ],
+      "@dal/models": [
+        "libs/shared/src/lib/models"
+      ],
+      "@dal/models/*": [
+        "libs/shared/src/lib/models/*"
+      ]
+    }
+  },
+  "include": [
+    "node_modules/angular-bootstrap-md/**/*.ts",
+    "src/**/*.ts"
+  ]
+}
