@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS,HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
@@ -7,7 +7,14 @@ import { User } from '../models/user';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
+    constructor(){
+        
+    }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        debugger;
+        let headers : HttpHeaders = request.headers;
+        let reqBody = JSON.parse(request.body);
+
         const users: User[] = [
             { id: 1, userName: 'test@test.com', password: 'test', firstName: 'Test', lastName: 'User' }
         ];
@@ -21,7 +28,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             // authenticate - public
             if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
                 debugger;
-                const user = users.find(x => x.userName === request.body.userName && x.password === request.body.password);
+                const user = users.find(x => x.userName === reqBody.userName && x.password === reqBody.password);
                 if (!user) return error('Username or password is incorrect');
                 return ok({
                     id: user.id,

@@ -5,13 +5,19 @@ import { map } from 'rxjs/operators';
 
 import { User } from '../models/user';
 import { ApiService } from '../services/api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private apiService: ApiService, private http: HttpClient) {
+  constructor(
+    private apiService: ApiService,
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.currentUserSubject = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem('currentUser'))
     );
@@ -22,9 +28,9 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string) {
+  login(userName: string, password: string) {
     return this.apiService
-      .post<any>('users/authenticate', { username, password })
+      .post<any>('users/authenticate', { userName, password })
       .pipe(
         map(user => {
           // login successful if there's a jwt token in the response
@@ -36,6 +42,14 @@ export class AuthenticationService {
 
           return user;
         })
+      )
+      .subscribe(
+        data => {
+          // get return url from route parameters or default to '/'
+          let returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+          this.router.navigate([returnUrl]);
+        },
+        error => {}
       );
   }
 

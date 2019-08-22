@@ -10,11 +10,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { CommonUiModule } from '@quick-flight-workspace/common-ui';
-import { HomeComponent } from './home/home.component';
 import { SharedModule } from '@quick-flight-workspace/shared';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,

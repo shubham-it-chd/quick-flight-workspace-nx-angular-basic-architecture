@@ -1,3 +1,13 @@
+# quick-flight-workspace-nx-angular-basic-architecture
+This is a demo of angular basic architecture with use of nrwl schematics.
+
+# Quick start steps:-
+	1. Install Node.js
+	2. npm i g yarn
+	3. yarn add global @nrwl/schematics @angular/cli
+	4. Run yarn to Install dependencies
+
+
 # QuickFlightWorkspace
 
 This project was generated using [Nx](https://nx.dev).

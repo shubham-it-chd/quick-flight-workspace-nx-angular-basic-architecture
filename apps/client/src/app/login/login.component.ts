@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.toastrService.success('ThisIsMessage', 'ThisIsTittle');
     this.createForm();
   }
 
@@ -43,14 +42,9 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    this.authenticationService.login(this.f.userName.value,
-      this.f.password.value);
-    console.log(
-      this.authenticationService.login(
-        this.f.userName.value,
-        this.f.password.value
-      )
+    this.authenticationService.login(
+      this.f.userName.value,
+      this.f.password.value
     );
-    //Redirect to User Home Page
   }
 }
